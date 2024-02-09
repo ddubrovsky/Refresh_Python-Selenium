@@ -63,3 +63,8 @@ class ContactHelper:
     def select_first_contact(self):
         wd = self.app.wd
         wd.find_element(By.NAME, "selected[]").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        return len(wd.find_elements(By.NAME, "selected[]"))
