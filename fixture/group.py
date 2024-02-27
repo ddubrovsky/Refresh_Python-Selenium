@@ -77,12 +77,12 @@ class GroupHelper:
     group_cache = None
 
     def get_group_list(self):
-        if self.group_cache is None
+        if self.group_cache is None:
             wd = self.app.wd
             self.open_groups_page()
-            group_cache = []
+            self.group_cache = []
             for element in wd.find_elements(By.CSS_SELECTOR, "span.group"):
                 text = element.text
                 id = element.find_element(By.NAME, "selected[]").get_attribute("value")
-                group_cache.append(Group(name=text, id=id))
+                self.group_cache.append(Group(name=text, id=id))
         return list(self.group_cache)
