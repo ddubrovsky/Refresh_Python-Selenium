@@ -80,6 +80,22 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None
 
+#    def modify_first_group(self):
+#        self.modify_group_by_index(0)
+
+    def modify_group_by_index(self, index, new_group_data):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_group_by_index(index)
+        # open modification form
+        wd.find_element(By.NAME, "edit").click()
+        # fill group form
+        self.fill_group_form(new_group_data)
+        # submit modification
+        wd.find_element(By.NAME, "update").click()
+        self.return_to_group_page()
+        self.group_cache = None
+
     def open_groups_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/groups") and len(wd.find_elements(By.NAME, "new")) > 0):
